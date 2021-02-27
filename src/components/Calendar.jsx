@@ -1,5 +1,8 @@
 import React from "react";
 import clsx from "clsx";
+import add from "date-fns/add";
+import startOfDay from "date-fns/startOfDay";
+import format from "date-fns/format";
 import styles from "./calendar/calendar.module.css";
 
 const names = [
@@ -11,7 +14,18 @@ const names = [
   "Jane Doe",
 ];
 
-const events = new Array(20).fill("event");
+const getTimeString = (_, cellIndex) => {
+  let result = "";
+  if (cellIndex !== 0) {
+    const time = add(startOfDay(new Date()), { minutes: cellIndex * 30 });
+    result = format(time, "hh:mm aaa");
+  }
+  return result;
+};
+
+// 24 hours in a day, and each cell is 30 mins
+// hence total no. of cells = 24 * 2 = 48
+const cells = new Array(48).fill().map(getTimeString);
 
 // Reference: https://stackoverflow.com/a/35947146
 const Calendar = () => {
@@ -61,15 +75,22 @@ const Calendar = () => {
             ])}
             ref={timeColumnRef}
           >
-            {events.map((_, index) => (
+            {cells.map((time, index) => (
               <div
                 className={clsx([
-                  "p-4 border-b border-gray-200",
+                  "p-4 border-gray-200 relative",
                   styles["time-cell"],
                 ])}
                 key={index}
               >
-                {index}
+                <span
+                  className={clsx([
+                    "absolute text-xs text-gray-400",
+                    styles["timestamp"],
+                  ])}
+                >
+                  {time}
+                </span>
               </div>
             ))}
           </div>
@@ -85,15 +106,14 @@ const Calendar = () => {
                 key={index}
                 className={clsx(["w-full block", styles["column-root"]])}
               >
-                {events.map((event, index) => (
+                {cells.map((_, index) => (
                   <div
                     key={index}
                     className={clsx([
                       "p-4 w-full border-b border-r border-gray-200",
+                      styles["cell"],
                     ])}
-                  >
-                    {event}
-                  </div>
+                  />
                 ))}
               </div>
             ))}

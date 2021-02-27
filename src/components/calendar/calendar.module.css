@@ -3,11 +3,6 @@
   height: calc(100vh - var(--app-bar-height));
 }
 
-.column-root {
-  min-width: 400px;
-  height: min-content;
-}
-
 .header-spacer {
   min-width: var(--time-column-width);
   height: 60px;
@@ -15,6 +10,7 @@
 
 .column-headers-container {
   margin-right: var(--scrollbar-thickness);
+  width: calc(100vw - var(--nav-rail-width) - var(--time-column-width));
 }
 
 .column-header {
@@ -27,6 +23,15 @@
   height: calc(100vh - var(--app-bar-height) - 60px);
 }
 
+.column-root {
+  min-width: 400px;
+  height: min-content;
+}
+
+.cell {
+  min-height: 80px;
+}
+
 .time-column {
   height: calc(
     100vh - var(--app-bar-height) - 60px - var(--scrollbar-thickness)
@@ -36,4 +41,10 @@
 
 .time-cell {
   min-width: var(--time-column-width);
+  min-height: 80px;
+}
+
+.timestamp {
+  top: -10px;
+  right: 5px;
 }
