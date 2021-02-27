@@ -23,7 +23,7 @@ const Calendar = () => {
 
   return (
     <>
-      <div className={clsx(["bg-red-50", styles["calendar-root"]])}>
+      <div className={clsx([styles["calendar-root"]])}>
         <div
           id="headerdiv"
           ref={headerRef}
@@ -36,7 +36,7 @@ const Calendar = () => {
             <div
               key={index}
               className={clsx([
-                "bg-blue-100 w-full p-4",
+                "border-b border-r border-gray-200 w-full p-4",
                 styles["column-header"],
               ])}
             >
@@ -54,10 +54,15 @@ const Calendar = () => {
           {names.map((_, index) => (
             <div
               key={index}
-              className={clsx(["bg-white w-full block", styles["column-root"]])}
+              className={clsx(["w-full block", styles["column-root"]])}
             >
               {events.map((event, index) => (
-                <div key={index} className={clsx(["p-4 w-full bg-green-100"])}>
+                <div
+                  key={index}
+                  className={clsx([
+                    "p-4 w-full border-b border-r border-gray-200",
+                  ])}
+                >
                   {event}
                 </div>
               ))}
