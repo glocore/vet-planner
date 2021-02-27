@@ -1,0 +1,4 @@
+.nav-rail-root {
+  width: var(--nav-rail-width);
+  height: 100vh;
+}

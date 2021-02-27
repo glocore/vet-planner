@@ -1,0 +1,4 @@
+.app-bar-root {
+  width: calc(100vw - var(--nav-rail-width));
+  height: var(--app-bar-height);
+}

@@ -1,0 +1,4 @@
+.calendar-root {
+  width: calc(100%);
+  height: calc(100vh - var(--app-bar-height));
+}
