@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --app-bar-height: 50px;
-  --nav-rail-width: 50px;
+  --app-bar-height: 80px;
+  --nav-rail-width: 80px;
   --column-min-width: 400px;
   --scrollbar-thickness: 12px;
-  --time-column-width: 50px;
+  --time-column-width: 80px;
 }

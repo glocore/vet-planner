@@ -8,6 +8,11 @@
   height: min-content;
 }
 
+.header-spacer {
+  min-width: var(--time-column-width);
+  height: 60px;
+}
+
 .column-headers-container {
   margin-right: var(--scrollbar-thickness);
 }
@@ -20,4 +25,15 @@
 .columns-container {
   width: calc(100vw - var(--nav-rail-width));
   height: calc(100vh - var(--app-bar-height) - 60px);
+}
+
+.time-column {
+  height: calc(
+    100vh - var(--app-bar-height) - 60px - var(--scrollbar-thickness)
+  );
+  min-width: var(--time-column-width);
+}
+
+.time-cell {
+  min-width: var(--time-column-width);
 }
