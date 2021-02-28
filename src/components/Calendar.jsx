@@ -23,6 +23,25 @@ const getTimeString = (_, cellIndex) => {
   return result;
 };
 
+const sampleEvents = (() => {
+  const getStartMinute = (index) => {
+    return index * 100;
+  };
+
+  const getEndMinute = (index) => {
+    return index * 100 + 30;
+  };
+
+  const getEvent = (_, index) => {
+    return {
+      startMinute: getStartMinute(index),
+      endMinute: getEndMinute(index),
+    };
+  };
+
+  return new Array(5).fill().map(getEvent);
+})();
+
 // 24 hours in a day, and each cell is 30 mins
 // hence total no. of cells = 24 * 2 = 48
 const cells = new Array(48).fill().map(getTimeString);
@@ -104,7 +123,10 @@ const Calendar = () => {
             {names.map((_, index) => (
               <div
                 key={index}
-                className={clsx(["w-full block", styles["column-root"]])}
+                className={clsx([
+                  "w-full block relative",
+                  styles["column-root"],
+                ])}
               >
                 {cells.map((_, index) => (
                   <div
@@ -114,6 +136,21 @@ const Calendar = () => {
                       styles["cell"],
                     ])}
                   />
+                ))}
+                {sampleEvents.map((event, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      position: "absolute",
+                      width: "calc(100% - 20px)",
+                      marginLeft: 10,
+                      marginRight: 10,
+                      backgroundColor: "white",
+                      border: "1px solid black",
+                      top: event.startMinute * (8 / 3),
+                      height: ((event.endMinute - event.startMinute) * 8) / 3,
+                    }}
+                  ></div>
                 ))}
               </div>
             ))}
