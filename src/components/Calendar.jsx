@@ -1,8 +1,11 @@
+// TODO: Fix issue with vw/vh units on mobile
+// Refer: https://gist.github.com/getify/150ea5a3b30b8822dee7798883d120b9
 import React from "react";
 import clsx from "clsx";
 import add from "date-fns/add";
 import startOfDay from "date-fns/startOfDay";
 import format from "date-fns/format";
+import differenceInMinutes from "date-fns/differenceInMinutes";
 import styles from "./calendar/calendar.module.css";
 
 const names = [
@@ -50,11 +53,32 @@ const cells = new Array(48).fill().map(getTimeString);
 const Calendar = () => {
   const headerRef = React.useRef(null);
   const timeColumnRef = React.useRef(null);
+  const cellGridRef = React.useRef(null);
 
   const handleScroll = (e) => {
     headerRef.current.scrollLeft = e.target.scrollLeft;
     timeColumnRef.current.scrollTop = e.target.scrollTop;
   };
+
+  const scrollTo = (vertical, horizontal) => {
+    if (typeof vertical === "number") {
+      cellGridRef.current.scrollTop = vertical;
+      timeColumnRef.current.scrollTop = vertical;
+    }
+    if (typeof horizontal === "number") {
+      cellGridRef.current.scrollLeft = horizontal;
+      headerRef.current.scrollLeft = horizontal;
+    }
+  };
+
+  React.useEffect(() => {
+    // scroll to current time on load
+    const currentMinuteOfDay = differenceInMinutes(
+      new Date(),
+      startOfDay(new Date())
+    );
+    scrollTo((currentMinuteOfDay - 100) * (8 / 3));
+  }, []);
 
   return (
     <>
@@ -119,6 +143,7 @@ const Calendar = () => {
               styles["columns-container"],
             ])}
             onScroll={handleScroll}
+            ref={cellGridRef}
           >
             {names.map((_, index) => (
               <div
