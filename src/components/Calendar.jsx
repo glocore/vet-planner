@@ -7,6 +7,7 @@ import startOfDay from "date-fns/startOfDay";
 import format from "date-fns/format";
 import differenceInMinutes from "date-fns/differenceInMinutes";
 import styles from "./calendar/calendar.module.css";
+import { Event } from "./calendar/Event";
 
 const names = [
   "John Doe",
@@ -163,19 +164,12 @@ const Calendar = () => {
                   />
                 ))}
                 {sampleEvents.map((event, index) => (
-                  <div
+                  <Event
                     key={index}
-                    style={{
-                      position: "absolute",
-                      width: "calc(100% - 20px)",
-                      marginLeft: 10,
-                      marginRight: 10,
-                      backgroundColor: "white",
-                      border: "1px solid black",
-                      top: event.startMinute * (8 / 3),
-                      height: ((event.endMinute - event.startMinute) * 8) / 3,
-                    }}
-                  ></div>
+                    startMinute={event.startMinute}
+                    endMinute={event.endMinute}
+                    type="d"
+                  />
                 ))}
               </div>
             ))}

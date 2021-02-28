@@ -1,0 +1,29 @@
+.event-root {
+  position: absolute;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+.type-a {
+  background: #e9f4f5;
+  color: #319799;
+}
+.type-b {
+  background: #fdedea;
+  color: #ed734f;
+}
+.type-c {
+  background: #edebfa;
+  color: #7557d4;
+}
+.type-d {
+  background: repeating-linear-gradient(
+    -55deg,
+    #e9f4f5,
+    #e9f4f5 20px,
+    #f1f8f9 20px,
+    #f1f8f9 40px
+  );
+  color: #319799;
+}

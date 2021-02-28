@@ -29,7 +29,7 @@
 }
 
 .cell {
-  min-height: 80px;
+  min-height: var(--cell-height);
 }
 
 .time-column {
@@ -41,7 +41,7 @@
 
 .time-cell {
   min-width: var(--time-column-width);
-  min-height: 80px;
+  min-height: var(--cell-height);
 }
 
 .timestamp {

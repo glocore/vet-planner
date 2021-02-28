@@ -8,6 +8,7 @@
   --column-min-width: 400px;
   --scrollbar-thickness: 12px;
   --time-column-width: 80px;
+  --cell-height: 80px;
 }
 
 /* width */
