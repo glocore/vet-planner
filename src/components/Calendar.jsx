@@ -1,5 +1,6 @@
 // TODO: Fix issue with vw/vh units on mobile
 // Refer: https://gist.github.com/getify/150ea5a3b30b8822dee7798883d120b9
+// TODO: Scroll event into view when clicked
 import React from "react";
 import clsx from "clsx";
 import add from "date-fns/add";
@@ -8,6 +9,7 @@ import format from "date-fns/format";
 import differenceInMinutes from "date-fns/differenceInMinutes";
 import styles from "./calendar/calendar.module.css";
 import { Event } from "./calendar/Event";
+import { useEventSheet } from "./EventSheet";
 
 const names = [
   "John Doe",
@@ -55,6 +57,7 @@ const Calendar = () => {
   const headerRef = React.useRef(null);
   const timeColumnRef = React.useRef(null);
   const cellGridRef = React.useRef(null);
+  const { isEventSheetOpen } = useEventSheet();
 
   const handleScroll = (e) => {
     headerRef.current.scrollLeft = e.target.scrollLeft;
@@ -84,7 +87,12 @@ const Calendar = () => {
   return (
     <>
       <div className={clsx([styles["calendar-root"]])}>
-        <div style={{ display: "flex" }}>
+        <div
+          className={clsx([
+            "flex",
+            { [styles["event-sheet-open"]]: isEventSheetOpen },
+          ])}
+        >
           <div
             className={clsx([
               "border-b border-r border-gray-200",
@@ -111,7 +119,12 @@ const Calendar = () => {
             ))}
           </div>
         </div>
-        <div className="flex">
+        <div
+          className={clsx([
+            "flex",
+            { [styles["event-sheet-open"]]: isEventSheetOpen },
+          ])}
+        >
           <div
             className={clsx([
               "flex flex-col border-r border-gray-200 overflow-hidden",

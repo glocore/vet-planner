@@ -19,8 +19,12 @@
 }
 
 .columns-container {
-  width: calc(100vw - var(--nav-rail-width));
+  width: calc(100vw - var(--nav-rail-width) - var(--time-column-width));
   height: calc(100vh - var(--app-bar-height) - 60px);
+}
+
+.event-sheet-open {
+  width: calc(100% - var(--event-sheet-width));
 }
 
 .column-root {

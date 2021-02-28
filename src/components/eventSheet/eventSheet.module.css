@@ -1,0 +1,31 @@
+.event-sheet-root {
+  top: var(--app-bar-height);
+  width: var(--event-sheet-width);
+  height: calc(100vh - var(--app-bar-height));
+}
+@keyframes leave {
+  0% {
+    right: 0;
+    opacity: 1;
+  }
+  100% {
+    right: -20px;
+    opacity: 0;
+  }
+}
+.event-sheet-closed {
+  animation: leave 0.2s;
+}
+@keyframes appear {
+  0% {
+    right: -20px;
+    opacity: 0;
+  }
+  100% {
+    right: 0;
+    opacity: 1;
+  }
+}
+.event-sheet-open {
+  animation: appear 0.2s;
+}
